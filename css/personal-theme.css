@@ -1,0 +1,14 @@
+/**
+ * Personal theme — Lato on near-black.
+ *
+ * Overrides only. Load base-theme.css before this file; everything not set
+ * here falls through to the base defaults.
+ */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+:root {
+  --r-background-color: #10151b;
+  --r-main-font: "Lato", sans-serif;
+  --r-heading-font: "Lato", sans-serif;
+  --r-bold-font-weight: bolder;
+}

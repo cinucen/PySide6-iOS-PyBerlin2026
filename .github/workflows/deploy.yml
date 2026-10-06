@@ -1,0 +1,46 @@
+name: Deploy slides to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-deploy by hand from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it, so a half-published
+# deck is never left live.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the deck
+        uses: actions/checkout@v4
+        with:
+          # reveal.js is a git submodule and Pages does not fetch submodules on
+          # its own. Without this the deck deploys with no reveal.js at all.
+          submodules: recursive
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # The deck is plain static HTML/CSS/JS and reveal.js ships prebuilt files
+      # in dist/, so the repository is uploaded as-is with no build step.
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

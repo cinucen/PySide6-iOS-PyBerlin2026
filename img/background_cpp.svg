@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1920"
+   zoomAndPan="magnify"
+   viewBox="0 0 1440 809.999993"
+   height="1080"
+   preserveAspectRatio="xMidYMid meet"
+   version="1.0"
+   id="svg7"
+   sodipodi:docname="background_cpp.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.0265625"
+     inkscape:cx="960.48706"
+     inkscape:cy="539.66514"
+     inkscape:window-width="3826"
+     inkscape:window-height="2106"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7" />
+  <defs
+     id="defs2">
+    <filter
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       id="03816d0229">
+      <feColorMatrix
+         values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"
+         color-interpolation-filters="sRGB"
+         id="feColorMatrix1" />
+    </filter>
+    <mask
+       id="51aefc6375">
+      <g
+         filter="url(#03816d0229)"
+         id="g1">
+        <rect
+           x="-144"
+           width="1728"
+           fill="#000000"
+           y="-80.999999"
+           height="971.999992"
+           fill-opacity="0.4"
+           id="rect1" />
+      </g>
+    </mask>
+    <clipPath
+       id="93c9b72d3f">
+      <path
+         d="M 1 0.121094 L 497 0.121094 L 497 507 L 1 507 Z M 1 0.121094 "
+         clip-rule="nonzero"
+         id="path1" />
+    </clipPath>
+    <clipPath
+       id="a54461c604">
+      <rect
+         x="0"
+         width="498"
+         y="0"
+         height="507"
+         id="rect2" />
+    </clipPath>
+  </defs>
+  <rect
+     x="-144"
+     width="1728"
+     fill="#ffffff"
+     y="-80.999999"
+     height="971.999992"
+     fill-opacity="1"
+     id="rect3" />
+  <rect
+     x="-144"
+     width="1728"
+     fill="#10151b"
+     y="-80.999999"
+     height="971.999992"
+     fill-opacity="1"
+     id="rect4"
+     style="fill:#00000f;fill-opacity:1" />
+  <g
+     mask="url(#51aefc6375)"
+     id="g7"
+     transform="matrix(0.66106452,0,0,0.66106452,520.54865,273.80714)"
+     style="stroke-width:1.51271">
+    <g
+       transform="translate(888,303)"
+       id="g6"
+       style="stroke-width:1.51271">
+      <g
+         clip-path="url(#a54461c604)"
+         id="g5"
+         style="stroke-width:1.51271">
+        <g
+           clip-path="url(#93c9b72d3f)"
+           id="g4"
+           style="stroke-width:1.51271">
+          <path
+             fill="#9badd6"
+             d="M 472.27734,118.35938 273.49609,6.632812 c -15.07812,-8.4375 -33.79687,-8.4375 -48.875,0 L 25.839844,118.35938 c -15.21875,8.52734 -24.671875,24.52734 -24.671875,41.68359 v 223.44922 c 0,17.15234 9.453125,33.15234 24.671875,41.68359 L 224.62109,536.90234 c 7.5625,4.24219 16,6.36328 24.4375,6.36328 8.4375,0 16.875,-2.12109 24.4375,-6.36328 L 472.27734,425.17578 c 15.21875,-8.53125 24.66797,-24.53125 24.66797,-41.68359 V 160.04297 c 0,-17.15625 -9.44922,-33.15625 -24.66797,-41.68359 z M 249.05859,413.41797 c -78.10937,0 -141.65234,-63.53906 -141.65234,-141.65235 0,-78.10937 63.54297,-141.64843 141.65234,-141.64843 44.63282,0 85.85547,20.70312 112.64844,55.97656 l -51.73828,29.92578 c -15.53906,-17.01562 -37.625,-26.88281 -60.91016,-26.88281 -45.55859,0 -82.6289,37.07422 -82.6289,82.6289 0,45.5586 37.07031,82.62891 82.6289,82.62891 23.28516,0 45.3711,-9.86719 60.91016,-26.87891 l 51.73828,29.92579 c -26.79297,35.27343 -68.01562,55.97656 -112.64844,55.97656 z M 390.70703,283.57031 h -23.60547 v 23.60938 h -23.60937 v -23.60938 h -23.60938 v -23.60937 h 23.60938 v -23.60547 h 23.60937 v 23.60547 h 23.60547 z m 82.63281,0 h -23.60937 v 23.60938 h -23.60938 v -23.60938 h -23.60937 v -23.60937 h 23.60937 v -23.60547 h 23.60938 v 23.60547 h 23.60937 z m 0,0"
+             fill-opacity="1"
+             fill-rule="nonzero"
+             id="path4"
+             style="stroke-width:1.51271" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,588 @@
+/**
+ * Deck styles: the palette, column layout, slide chrome, components and
+ * utility classes used by index.html.
+ *
+ * Nothing here restyles reveal.js itself — that lives in base-theme.css plus
+ * the active theme file. Load this last so it wins over both.
+ *
+ *   1. Palette
+ *   2. Slide chrome (corner header/footer)
+ *   3. Components (video poster)
+ *   4. Column layout
+ *   5. Utilities (colors, text, boxes, rules)
+ */
+
+/*********************************************
+ * 1. PALETTE
+ *********************************************/
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --qt-neon: #2CDE85;
+  --qt-pine: #00414A;
+  --qt-lemon: #DBEB00;
+  --qt-moss: #373F26;
+  --qt-violet: #CDB0FF;
+  --qt-midnight: #27138B;
+  --qt-mandarin: #FFA615;
+  --qt-burgundy: #5F002D;
+  --kde-blue: #78b6e0;
+  --python-blue: #4B8BBE;
+  --python-dark-blue: #306998;
+  --python-yellow: #ffd43B;
+  --python-light-yellow: #ffe873;
+  --python-gray: #646464;
+  --cpp-blue: #3f81b5;
+  --rust-red: #a72145;
+  --zig-yellow: #ef9f1c;
+  --zig-black: #111111;
+  --carbon-gray: #353535;
+  --csharp-purple: #5943a8;
+  --csharp-light-purple: #a08ce8;
+}
+
+/*********************************************
+ * 2. SLIDE CHROME
+ * Corner logo/name copied into every slide by the script in index.html.
+ *********************************************/
+#header-left {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+#header-right {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+}
+#footer-left {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+}
+
+/*********************************************
+ * 3. COMPONENTS
+ *********************************************/
+
+/* Click-to-play YouTube poster: no player (and no console noise) until clicked */
+.yt-facade {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: #000;
+  overflow: hidden;
+  /* Shrinks to the column width, but always stays 16:9 so the 1280x720
+     poster fits exactly instead of being cropped to a fixed height. */
+  width: 560px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.yt-facade img {
+  width: 100%;
+  height: 100%;
+  /* opt out of the deck-wide `.reveal img { max-width: 95% }` clamp */
+  max-width: none;
+  max-height: none;
+  /* `contain` over `cover`: never crop, letterbox against the black box instead */
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+.yt-facade iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  display: block;
+}
+.yt-facade.playing img,
+.yt-facade.playing .yt-play {
+  display: none;
+}
+.yt-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.yt-play::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 11px 0 11px 19px;
+  border-color: transparent transparent transparent #fff;
+}
+.yt-facade:hover .yt-play {
+  background: #f00;
+}
+
+/* Slides marked with data-no-header hide the corner header/footer chrome */
+.reveal.hide-header #header-left,
+.reveal.hide-header #header-right,
+.reveal.hide-header #footer-left {
+  display: none;
+}
+
+/*********************************************
+ * 4. COLUMN LAYOUT
+ *
+ * Wrap the columns in a .columns and give each column its own
+ * element. Both columns read left-aligned; the split lives on the
+ * wrapper, so there is nothing to keep in sync between the two.
+ *
+ *   <div class="columns">          50 / 50
+ *     <div>left</div>
+ *     <div>right</div>
+ *   </div>
+ *
+ *   <div class="columns c70-30">   uneven, see ratios below
+ *
+ * Modifiers stack: class="columns c30-70 v-center".
+ * A single child works too: it fills the first track only, which is
+ * the "text on the left N%, artwork on the right" cover layout.
+ *********************************************/
+.reveal .columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.5em;
+  align-items: start;
+  text-align: left;
+}
+
+/* min-width:0 stops a wide <pre> from blowing out its track;
+ * grid items default to min-width:auto and would overflow. */
+.reveal .columns > * {
+  min-width: 0;
+}
+
+.reveal .columns img {
+  max-width: 100%;
+}
+
+/* Trim the outer margins so columns start and end flush — both on one
+ * baseline, and no stray trailing space to throw off v-center. */
+.reveal .columns > * > :first-child {
+  margin-top: 0;
+}
+
+.reveal .columns > * > :last-child {
+  margin-bottom: 0;
+}
+
+/* Code in a column. base-theme.css centres a <pre> at 90% width with an auto
+ * margin and caps the code at 400px tall — in a column we want the full track
+ * width, a flush left edge, and no inner scrollbar on a long snippet. */
+.reveal .columns pre {
+  width: 100%;
+  margin: 0 0 var(--r-block-margin) 0;
+}
+
+.reveal .columns pre code {
+  max-height: none;
+}
+
+/* Ratios. c50-50 is the default, spelled out for when you want it explicit. */
+.reveal .columns.c50-50 { grid-template-columns: 1fr 1fr; }
+.reveal .columns.c30-70 { grid-template-columns: 3fr 7fr; }
+.reveal .columns.c40-60 { grid-template-columns: 4fr 6fr; }
+.reveal .columns.c60-40 { grid-template-columns: 6fr 4fr; }
+.reveal .columns.c70-30 { grid-template-columns: 7fr 3fr; }
+
+/* Three and four even columns. */
+.reveal .columns.c3 { grid-template-columns: repeat(3, 1fr); }
+.reveal .columns.c4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Vertical alignment of the columns against each other. On the wrapper it
+ * moves every column; on one column it moves only that one, which is what
+ * you want for an image sitting beside a taller text block. */
+.reveal .columns.v-start  { align-items: start; }
+.reveal .columns.v-center { align-items: center; }
+.reveal .columns.v-end    { align-items: end; }
+
+.reveal .columns > .v-start  { align-self: start; }
+.reveal .columns > .v-center { align-self: center; }
+.reveal .columns > .v-end    { align-self: end; }
+
+/* An image spanning the whole slide height, for a hero/section column.
+ *
+ *   <div><img class="full-height" src="…" /></div>
+ *
+ * `--slide-height` is set by reveal from the `height` in deck.js, so this
+ * follows the deck size rather than hardcoding it. `cover` is what actually
+ * guarantees full height: the image crops to fill the column instead of
+ * letterboxing, which is what `contain` would do whenever the column is
+ * narrower than the image's aspect ratio. Give the taller neighbour column a
+ * v-center, or its text ends up flush against the top edge of the slide. */
+.reveal .columns .full-height {
+  height: var(--slide-height, 720px);
+  width: 100%;
+  /* out-clamp `.reveal img { max-width/height: 95% }` in base-theme.css */
+  max-height: none;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+/* Pair with .full-height to show the whole image, uncropped, when the column
+ * is wide enough for it. */
+.reveal .columns .fit-contain {
+  object-fit: contain;
+}
+
+/*
+ * Edge-to-edge side panel, for artwork that should bleed off the slide.
+ * Independent of .columns — it is taken out of flow and pinned to the slide
+ * edge, so no row height or gap constrains it:
+ *
+ *   <section class="full-slide" data-no-header>
+ *     <div class="columns c60-40 v-center">
+ *       <div>…text…</div>
+ *     </div>
+ *     <img class="side-image" src="…" />
+ *   </section>
+ *
+ * .full-slide is what makes it work. Sections are absolutely positioned with
+ * auto height, so without it `height: 100%` on the panel would resolve
+ * against the text, and reveal's vertical centering would drag the panel off
+ * the bottom of the slide. Once the section is already slide-height, that
+ * centering resolves to top: 0 and the two agree.
+ */
+.reveal .slides section.full-slide {
+  height: var(--slide-height, 720px);
+}
+
+.reveal .slides section.full-slide > .columns {
+  height: 100%;
+}
+
+/* The panel is a backdrop: everything else on the slide paints on top of it,
+ * so text and images may overlap it freely. Without this the panel would win
+ * regardless of order, since positioned elements paint above in-flow ones. */
+.reveal .slides section.full-slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal .slides section.full-slide > .side-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 40%;
+  z-index: 0;
+  /* out-clamp `.reveal img { max-width/height: 95% }` in base-theme.css */
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+
+/* Panel width. Pair with the matching .columns ratio so the text column stops
+ * where the panel starts — .side-image.w-40 goes with .columns.c60-40. */
+.reveal .slides section.full-slide > .side-image.w-30 { width: 30%; }
+.reveal .slides section.full-slide > .side-image.w-40 { width: 40%; }
+.reveal .slides section.full-slide > .side-image.w-50 { width: 50%; }
+
+/* Anchor the panel to the left edge instead. */
+.reveal .slides section.full-slide > .side-image.on-left {
+  right: auto;
+  left: 0;
+}
+
+/* Per-column text alignment, for the rare case you want it. */
+.reveal .ta-left   { text-align: left; }
+.reveal .ta-center { text-align: center; }
+.reveal .ta-right  { text-align: right; }
+/*********************************************
+ * 5. UTILITIES
+ *********************************************/
+/* Text colours.
+ *
+ * The .reveal prefix is not decoration: base-theme.css sets `color` on
+ * `.reveal h1..h6` at a higher specificity than a bare class, so without it
+ * these would silently do nothing on a heading and only work on inline
+ * elements like <i> and <span>. */
+.reveal .gray {
+  color: var(--python-gray);
+  font-style: normal;
+}
+
+.reveal .blue {
+  color: #0077c8;
+  font-style: normal;
+}
+
+.reveal .white {
+  color: var(--white);
+  font-style: normal;
+}
+
+.reveal .red {
+  color: #ff6961;
+  font-style: normal;
+}
+
+.reveal .qt-neon {
+  color: var(--qt-neon);
+  font-style: normal;
+}
+
+.reveal .python-yellow {
+  color: var(--python-yellow);
+  font-style: normal;
+}
+
+.reveal .python-blue {
+  color: var(--python-blue);
+  font-style: normal;
+}
+
+.reveal .python-gray {
+  color: var(--python-gray);
+  font-style: normal;
+}
+
+.reveal .qt-pine {
+  color: var(--qt-pine);
+  font-style: normal;
+}
+
+.reveal .qt-violet {
+  color: var(--qt-violet);
+  font-style: normal;
+}
+
+.reveal .qt-lemon {
+  color: var(--qt-lemon);
+  font-style: normal;
+}
+
+.reveal .qt-moss {
+  color: var(--qt-moss);
+  font-style: normal;
+}
+
+.reveal .qt-midnight {
+  color: var(--qt-midnight);
+  font-style: normal;
+}
+
+.reveal .qt-mandarin {
+  color: var(--qt-mandarin);
+  font-style: normal;
+}
+
+.reveal .qt-burgundy {
+  color: var(--qt-burgundy);
+  font-style: normal;
+}
+
+.reveal .rust-red {
+  color: var(--rust-red);
+  font-style: normal;
+}
+
+.reveal .kde-blue {
+  color: var(--kde-blue);
+  font-style: normal;
+}
+
+.reveal .cpp-blue {
+  color: var(--cpp-blue);
+  font-style: normal;
+}
+
+.reveal .csharp-light-purple {
+  color: var(--csharp-light-purple);
+  font-style: normal;
+}
+
+.inline {
+  background-color: rgba(48, 206, 76, 1);
+  color: white;
+  border-radius: 0.1em;
+  padding: 4px 5px 6px;
+  white-space: nowrap;
+  font-size: 0.7em;
+}
+
+a {
+  color: var(--python-light-yellow) !important;
+  text-decoration: underline !important;
+}
+
+
+.clean-img {
+  background: rgba(0,0,0,0);
+  height: 35px;
+  border: 0px;
+  vertical-align: middle;
+}
+
+.srow {
+  line-height: 1;
+}
+
+.qt-line {
+  width: 70px;
+  border: 1px solid var(--qt-neon);
+  background-color: var(--qt-neon);
+  margin-left: 0px;
+}
+
+.yellow-line {
+  width: 70px;
+  border: 1px solid var(--python-yellow);
+  background-color: var(--python-yellow);
+  margin-left: 0px;
+}
+
+.x40 {
+  font-size: 40%;
+}
+
+.x50 {
+  font-size: 50%;
+}
+
+.x60 {
+  font-size: 60%;
+}
+
+.x70 {
+  font-size: 70%;
+}
+
+.x80 {
+  font-size: 80%;
+}
+
+/* The same sizes on a <pre>. base-theme.css sets `.reveal pre { font-size:
+ * 0.55em }` at a higher specificity than a bare class, so a <pre class="x40">
+ * would otherwise be ignored. */
+.reveal pre.x40 { font-size: 40%; }
+.reveal pre.x50 { font-size: 50%; }
+.reveal pre.x60 { font-size: 60%; }
+.reveal pre.x80 { font-size: 80%; }
+
+/* Font weights. The .reveal prefix is required to outrank the
+ * `.reveal h1..h6 { font-weight: ... }` rule in base-theme.css. */
+.reveal .w300 {
+  font-weight: 300;
+}
+
+.reveal .w400 {
+  font-weight: 400;
+}
+
+.reveal .w600 {
+  font-weight: 600;
+}
+
+.reveal .w700 {
+  font-weight: 700;
+}
+
+ul>li {
+  list-style-type: square;
+}
+
+.slide-neon {
+  background: var(--qt-neon) !important;
+  background-color: var(--qt-neon);
+  color: var(--qt-pine) !important;
+}
+
+.slide-blue {
+  background: var(--python-blue) !important;
+  background-color: var(--python-blue);
+  color: var(--white) !important;
+}
+
+.slide-red {
+  background: var(--rust-red) !important;
+  background-color: var(--rust-red);
+  color: var(--white) !important;
+}
+
+.slide-yellow {
+  background: var(--zig-yellow) !important;
+  background-color: var(--zig-yellow);
+  color: var(--white) !important;
+}
+
+.slide-black {
+  background: var(--zig-black) !important;
+  background-color: var(--zig-black);
+  color: var(--white) !important;
+}
+
+.slide-gray {
+  background: var(--carbon-gray) !important;
+  background-color: var(--carbon-gray);
+  color: var(--white) !important;
+}
+
+.slide-purple {
+  background: var(--csharp-purple) !important;
+  background-color: var(--csharp-purple);
+  color: var(--white) !important;
+}
+
+.quote-green {
+  border-left: 10px solid var(--qt-neon);
+  text-align: left;
+  padding-left: 10px;
+}
+
+.circle {
+    width:  150px;;
+    height: 150px;;
+    margin: 40px;
+    border-radius: 30%;
+}
+
+.square {
+    width:  150px;
+    height: 150px;
+    margin: 40px;
+}
+
+.white-box {
+    margin: 20px;
+    border: 3px solid white;
+    padding: 10px;
+}
+
+.yellow-box {
+    margin: 20px;
+    border: 3px solid var(--python-yellow);
+    padding: 10px;
+    color: var(--python-yellow);
+}
+
+/* Links that print the URL itself as their text */
+a.url:before {
+  font-family: monospace;
+  content: attr(href);
+}

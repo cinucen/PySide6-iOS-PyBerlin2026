@@ -1,3 +1,5 @@
-# PySide6-iOS-PyBerlin2026
+# PyBerlin October 2026
 
-Bringing PySide6 to iOS
+This is the repo with the slides and snippets of the talk:
+
+> Python Mobile Development: Bringing PySide6 to iOS
