@@ -172,7 +172,7 @@
 
 <!-- 8. SAME SHAPE AS ANDROID -->
 <section data-transition="fade-in fade-out">
-  <h3>Two stages, same shape as <i class="qt-lemon">Android</i></h3>
+  <h3>Two stages</h3>
   <div class="columns c50-50">
    <div>
     <h5>1. Build the wheels</h5>
@@ -189,12 +189,15 @@
     </ul>
    </div>
   </div>
+  <p class="x70">same shape as <i class="qt-lemon">Android</i></p>
 </section>
 
 <!-- 9. STAGE 1 -->
 <section data-transition="fade-in fade-out">
   <h3>Stage 1: cross-compile the wheels</h3>
   <pre class="x60"><code class="bash" data-trim data-noescape>
+  $ git clone https://code.qt.io/pyside/pyside-setup
+  $ cd pyside-setup
   $ python tools/cross_compile_ios/main.py \
         --qt-install-path ~/Qt/6.12.0/ios \
         --arch arm64 --simulator
@@ -211,10 +214,15 @@
 
 <!-- 10. DO I HAVE TO DO THAT MYSELF? -->
 <section data-transition="fade-in fade-out">
-  <h3>"Do I have to cross-compile Qt myself?"</h3>
+  <h3>"Do I have to cross-compile PySide6 myself?"</h3>
   <ul class="x70">
-    <li class="fragment"><i class="qt-neon">No</i>, most people only ever run stage 2</li>
-    <li class="fragment">Get the wheels from the <b>Qt Downloads page</b>, or with <code>qtpip</code></li>
+    <li class="fragment"><i class="qt-neon">No</i>, stage 1 is not necessary</li>
+    <li class="fragment">Get the wheels from the <b>Qt Downloads page</b>, or with <code>qtpip</code>
+    <pre class="x60"><code class="bash" data-trim data-noescape>
+    $ pip install qtpip
+    $ qtpip download PySide6 --ios --arch arm64 --platform simulator
+    </code></pre>
+    </li>
     <li class="fragment">Install once, use across projects</li>
     <li class="fragment">Stage 1 is for whoever builds the wheels, or if you build from source</li>
   </ul>
@@ -307,13 +315,9 @@
 <!-- 16. NUMBERS -->
 <section data-transition="fade-in fade-out">
   <h3>The numbers</h3>
-  <div class="columns c3">
+  <div class="columns c50-50">
    <div>
     <h5><i class="qt-neon">App size</i></h5>
-    <p class="x60"><i class="red">TODO</i></p>
-   </div>
-   <div>
-    <h5><i class="qt-lemon">Cold start</i></h5>
     <p class="x60"><i class="red">TODO</i></p>
    </div>
    <div>
@@ -321,6 +325,7 @@
     <p class="x60"><i class="red">TODO</i></p>
    </div>
   </div>
+  <p class="x60"><i class="red">TODO</i>: Compare with a qt ios app?</p>
 </section>
 
 <!-- 17. STATUS -->
@@ -338,8 +343,11 @@
 <section data-transition="fade-in fade-out">
   <h3>Known limits</h3>
   <ul class="x70 tight narrow">
-    <li class="fragment">Use the official <i class="qt-neon">Qt for iOS</i> kit from the Qt installer;
-      custom Qt builds are not supported yet</li>
+    <li class="fragment">Use the official <i class="qt-neon">Qt for iOS</i> kit from the Qt installer:
+      <ul>
+        <li>Custom Qt builds are not supported yet</li>
+      </ul>
+    </li>
     <li class="fragment">C-extension packages are not supported</li>
     <li class="fragment">Wheels are built per target: once for the simulator, once for the device</li>
   </ul>
@@ -361,7 +369,7 @@
   <ul class="x70">
     <li class="fragment"><i class="qt-neon">Qt 6.12</i> is out; <i class="python-yellow">PySide 6.12</i> ships this support</li>
     <li class="fragment"><i class="qt-lemon">Third-party packages</i> - the big missing piece, and the hard one</li>
-    <li class="fragment">More examples, including QML</li>
+    <li class="fragment">More examples</li>
   </ul>
 </section>
 
