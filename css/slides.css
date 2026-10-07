@@ -485,6 +485,20 @@ a {
 .reveal pre.x60 { font-size: 60%; }
 .reveal pre.x80 { font-size: 80%; }
 
+/* Narrow bullet lists. base-theme.css makes lists `display: inline-block`, so
+ * they shrink to fit and a long bullet stretches across the whole slide. Going
+ * back to `block` lets max-width bite, and `margin: 0 auto` then centres the
+ * narrowed box under the (centred) heading. The text inside stays left-aligned.
+ * The width is in `ch` (roughly one character each), so it is a reading measure
+ * rather than a fixed size: an .x70 and an .x80 list both wrap at about the
+ * same number of words. */
+.reveal ul.narrow,
+.reveal ol.narrow {
+  display: block;
+  max-width: 45ch;
+  margin: 0 auto;
+}
+
 /* Font weights. The .reveal prefix is required to outrank the
  * `.reveal h1..h6 { font-weight: ... }` rule in base-theme.css. */
 .reveal .w300 {
