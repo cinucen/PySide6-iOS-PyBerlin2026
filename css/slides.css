@@ -134,6 +134,53 @@
   background: #f00;
 }
 
+/* Layer diagram: a bordered bundle holding stacked boxes, top to bottom */
+.reveal .stack {
+  border: 3px solid var(--white);
+  border-radius: 14px;
+  padding: 0.5em 0.6em 0.6em;
+  margin: 0 auto;
+  width: 90%;
+}
+.reveal .stack-title {
+  margin: 0 0 0.4em;
+  font-size: 0.7em;
+  text-align: center;
+  color: var(--white);
+}
+.reveal .stack-box {
+  margin: 0.35em 0;
+  padding: 0.5em 0.4em;
+  border-radius: 8px;
+  font-size: 0.6em;
+  font-weight: 600;
+  text-align: center;
+  color: var(--black);
+  background: var(--qt-neon);
+}
+
+/* Step diagram: boxes in a row with arrows between them */
+.reveal .flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  margin-top: 1em;
+}
+.reveal .flow-step {
+  padding: 0.5em 0.8em;
+  border: 3px solid var(--qt-neon);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 0.6em;
+  font-weight: 600;
+  color: var(--white);
+}
+.reveal .flow-arrow {
+  font-size: 0.9em;
+  color: var(--qt-lemon);
+}
+
 /* Slides marked with data-no-header hide the corner header/footer chrome */
 .reveal.hide-header #header-left,
 .reveal.hide-header #header-right,

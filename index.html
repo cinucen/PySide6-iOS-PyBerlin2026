@@ -155,7 +155,7 @@
 <!-- 7. BUILDING BLOCKS -->
 <section data-transition="fade-in fade-out">
   <h3>The building blocks</h3>
-  <div class="columns c50-50 v-center">
+  <div class="columns c60-40 v-center">
    <div>
     <ul class="x70">
       <li class="fragment"><i class="python-yellow">Python</i> for iOS, from python.org (PEP 730)</li>
@@ -165,7 +165,13 @@
     </ul>
    </div>
    <div>
-    <p class="x60"><i class="red">TODO</i>: diagram. Four stacked boxes "App.app" bundle: your Python code / PySide6 + Shiboken / Qt for iOS / Python.xcframework.</p>
+    <div class="stack">
+      <p class="stack-title"><code>App.app</code></p>
+      <div class="stack-box" data-fragment-index="3">Your Python code</div>
+      <div class="stack-box" data-fragment-index="2">PySide6 + Shiboken</div>
+      <div class="stack-box" data-fragment-index="1">Qt for iOS</div>
+      <div class="stack-box" data-fragment-index="0">Python.xcframework</div>
+    </div>
    </div>
   </div>
 </section>
@@ -189,7 +195,7 @@
     </ul>
    </div>
   </div>
-  <p class="x70">same shape as <i class="qt-lemon">Android</i></p>
+  <p class="x70">Same shape as <i class="qt-lemon">Android</i></p>
 </section>
 
 <!-- 9. STAGE 1 -->
@@ -199,7 +205,7 @@
   $ git clone https://code.qt.io/pyside/pyside-setup
   $ cd pyside-setup
   $ python tools/cross_compile_ios/main.py \
-        --qt-install-path ~/Qt/6.12.0/ios \
+        --qt-install-path ~/Qt/6.12.0 \
         --arch arm64 --simulator
 
   dist_ios/pyside6-...-ios_arm64_simulator.whl
@@ -276,7 +282,7 @@
    <div>
     <h5><i class="python-yellow">Pure Python</i></h5>
     <ul class="x70">
-      <li>Works: it is just files in the bundle</li>
+      <li>Works if you copy the folder next to your code; data files are not bundled</li>
     </ul>
    </div>
    <div>
@@ -294,7 +300,15 @@
 <!-- 14. DEMO -->
 <section data-transition="fade-in fade-out" data-background-image="img/background_cover.svg">
   <h1 class="r-fit-text">Demo: <i class="qt-neon">Tetrix</i> in the Simulator</h1>
-  <p class="x70"><code>main.py</code> &rarr; <code>pyside6-ios-deploy</code> &rarr; Xcode &rarr; running game</p>
+  <div class="flow">
+    <div class="flow-step"><code>tetrix.py</code></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step"><code>pyside6-ios-deploy</code></div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">Xcode</div>
+    <span class="flow-arrow">&rarr;</span>
+    <div class="flow-step">Running game</div>
+  </div>
 </section>
 
 <!-- 15. PHYSICAL DEVICE -->
@@ -345,11 +359,12 @@
   <ul class="x70 tight narrow">
     <li class="fragment">Use the official <i class="qt-neon">Qt for iOS</i> kit from the Qt installer:
       <ul>
-        <li>Custom Qt builds are not supported yet</li>
+        <li>Custom Qt builds are not supported</li>
       </ul>
     </li>
     <li class="fragment">C-extension packages are not supported</li>
-    <li class="fragment">Wheels are built per target: once for the simulator, once for the device</li>
+    <li class="fragment">Wheels are built per target: once for the simulator, once for the device (no universal binary)</li>
+    <li class="fragment">A Qt module missing from the kit is dropped <b>silently</b></li>
   </ul>
 </section>
 
@@ -369,6 +384,7 @@
   <ul class="x70">
     <li class="fragment"><i class="qt-neon">Qt 6.12</i> is out; <i class="python-yellow">PySide 6.12</i> ships this support</li>
     <li class="fragment"><i class="qt-lemon">Third-party packages</i> - the big missing piece, and the hard one</li>
+    <li class="fragment">A real diagnostic when a Qt module is dropped</li>
     <li class="fragment">More examples</li>
   </ul>
 </section>
