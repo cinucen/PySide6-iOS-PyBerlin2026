@@ -38,9 +38,19 @@
   </div>
   <img class="side-image w-40" src="img/PPT-section-images-03.png" />
   <aside class="notes">
-    <p>Hey everyone, I’m Ece. Today I’m gonna present you what I have been working on a long time: Python Mobile Development: Bringing PySide6 to iOS</p>
-    <p>I am generally very nervous about presenting and talking in front of people, so please bear with me and my mistakes :D</p>
-    <p>So first of all, before diving into the topic, I would like to shortly introduce my company and my team. I work for the Qt for Python team, also known as PySide, at the Qt Company. My project was to bring PySide6 to iOS. We had Android support for quite some time, but iOS was missing. With the 6.12 release, the idea of one codebase for all major platforms means a lot more.</p>
+    <ul>
+      <li>Hey everyone, I'm Ece</li>
+      <li>Presenting: Python Mobile Development: Bringing PySide6 to iOS</li>
+      <li>Nervous speaker, so bear with me and my mistakes :D</li>
+      <li>Intro: my company and my team
+        <ul>
+          <li>Qt for Python team (PySide) at the Qt Company</li>
+          <li>My project: bring PySide6 to iOS</li>
+          <li>Android support for quite some time, iOS was missing</li>
+          <li>With 6.12, the idea of one codebase for all major platforms means a lot more</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -76,11 +86,30 @@
    </div>
   </div>
   <aside class="notes">
-    <p>Qt is a C++ framework that has been around for 30 years. Most people have used a Qt application without knowing it. For example, LG Electronics uses Qt for its smart TV platform webOS, the Sauber F1 team, currently Audi, uses Qt technology for pit stop optimization and driver training, and the iLovePDF app is built with Qt, along with many more.</p>
-    <p>The same code and the same UI toolkit run on every major platform, including mobile and embedded.</p>
-    <p>PySide6 is the official Qt binding for Python. It exposes the Qt API, not a subset, so what you read in the Qt docs maps to Python almost one to one.</p>
-    <p>Shiboken is the generator that reads the Qt headers and produces the binding code. This matters later: that generated code is C++, and for iOS we have to cross-compile it, meaning we build it on the Mac for the phone.</p>
-    <p>The snippet is the smallest possible app: create an application object, show a label, run the event loop.</p>
+    <ul>
+      <li>Qt: C++ framework, around for 30 years</li>
+      <li>Most people have used a Qt app without knowing it
+        <ul>
+          <li>LG Electronics: smart TV platform webOS</li>
+          <li>Sauber F1 team, currently Audi: pit stop optimization and driver training</li>
+          <li>iLovePDF app, and many more</li>
+        </ul>
+      </li>
+      <li>Same code and same UI toolkit on every major platform, incl. mobile and embedded</li>
+      <li>PySide6: the official Qt binding for Python
+        <ul>
+          <li>Exposes the Qt API, not a subset</li>
+          <li>What you read in the Qt docs maps to Python almost one to one</li>
+        </ul>
+      </li>
+      <li>Shiboken: generator that reads the Qt headers and produces the binding code
+        <ul>
+          <li>Matters later: the generated code is C++</li>
+          <li>For iOS we cross-compile it: build on the Mac, for the phone</li>
+        </ul>
+      </li>
+      <li>Snippet: smallest possible app; create application object, show a label, run the event loop</li>
+    </ul>
   </aside>
 </section>
 
@@ -108,9 +137,30 @@
   </div>
   <p class="x70 fragment"><i class="python-yellow">PySide6</i> runs on Windows, macOS, Linux and Android, and now on <i class="qt-lemon">iOS</i> as well</p>
   <aside class="notes">
-    <p>Qt has two ways to build a UI. With Widgets, you create the interface in Python code, step by step: a button, a layout, and a signal connected to a function. These are the classic desktop-style controls, which is why they suit forms, dialogs and tools. With QML, you describe how the interface looks in a declarative file, and Python provides the logic behind it. QML is designed for fluid, touch-oriented interfaces with animations.</p>
-    <p>Both work with PySide6 and both can be deployed to an iOS device. Our demo later is a Widgets app (Tetrix), but QML works as well.</p>
-    <p>Wheels for the desktop platforms are on PyPI, and Android has been supported for a while through pyside6-android-deploy. So iOS is the one people kept asking about. With version 6.12 it is now possible.</p>
+    <ul>
+      <li>Qt has two ways to build a UI</li>
+      <li>Widgets: interface in Python code, step by step
+        <ul>
+          <li>A button, a layout, a signal connected to a function</li>
+          <li>Classic desktop-style controls: forms, dialogs, tools</li>
+        </ul>
+      </li>
+      <li>QML: describe how the UI looks in a declarative file
+        <ul>
+          <li>Python provides the logic behind it</li>
+          <li>Designed for fluid, touch-oriented UIs with animations</li>
+        </ul>
+      </li>
+      <li>Both work with PySide6, both can be deployed to an iOS device</li>
+      <li>Demo later: a Widgets app (Tetrix), QML works as well</li>
+      <li>Where it runs
+        <ul>
+          <li>Desktop wheels are on PyPI</li>
+          <li>Android supported for a while: pyside6-android-deploy</li>
+          <li>iOS is the one people kept asking about; with 6.12 it is now possible</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -128,7 +178,12 @@
   <video src="img/ios-device.mp4" controls preload="metadata" playsinline style="max-height: 460px;"></video>
   <p class="x70 fragment">Plain <code>main.py</code>. Real device. Now let's see how.</p>
   <aside class="notes">
-    <p>It works! In the clip you can see Xcode building the project for my phone, and then the app running on the device. This is a PySide6 Widgets app, running from a plain Python file. I wanted to show you this before explaining the mechanism behind it.</p>
+    <ul>
+      <li>It works!</li>
+      <li>In the clip: Xcode building the project for my phone, then the app running on the device</li>
+      <li>A PySide6 Widgets app, from a plain Python file</li>
+      <li>Shown first, before explaining the mechanism behind it</li>
+    </ul>
   </aside>
 </section>
 
@@ -142,8 +197,20 @@
     <li class="fragment">Simulator and device are <b>different targets</b>, so different binaries</li>
   </ul>
   <aside class="notes">
-    <p>On desktop you pip install PySide6 and run python. On iOS there is no pip on the device and no Python installed. So the interpreter, the standard library, Qt and PySide6 all have to be packaged inside the app bundle. The Python community's iOS support, PEP 730, defines that layout, and we follow it.</p>
-    <p>Also, the simulator and a real device are different targets, so they need different binaries. That is why we will have one set of wheels per target later.</p>
+    <ul>
+      <li>Desktop: pip install PySide6 and run python</li>
+      <li>iOS: no pip on the device, no Python installed
+        <ul>
+          <li>Interpreter, standard library, Qt and PySide6 all packaged inside the app bundle</li>
+          <li>Layout defined by the Python community's iOS support (PEP 730), and we follow it</li>
+        </ul>
+      </li>
+      <li>Simulator and real device are different targets, so different binaries
+        <ul>
+          <li>Why we have one set of wheels per target later</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -165,10 +232,32 @@
   <p class="x70 fragment">Decided at <i class="qt-lemon">build</i> time, not at
   <i class="python-yellow">import</i> time.</p>
   <aside class="notes">
-    <p>PySide6 is Python on top of compiled C++. On desktop and on Android, those compiled parts stay as separate files, and they get loaded when you import them. Both platforms ship everything inside the app, nothing is downloaded at runtime, but the pieces stay separate.</p>
-    <p>On iOS, they are merged into one program file when you build the app. That is Apple's rule: an iOS app may only run code that was part of it when it was signed, so there is no way to keep the pieces separate and load them later.</p>
-    <p>So on iOS it is decided at build time, not at import time. For those who want the proper terms: desktop and Android use dynamic linking, shared libraries and .so files. iOS uses static linking, where archives are merged into the executable. Qt for iOS ships static libraries only. There is a possibility to build Qt for ios with shared libraries but, it has its own problems and making the steps a bit more complex.</p>
-    <p>Since there is nothing to load at import time, every module has to be registered with the interpreter before it starts.</p>
+    <ul>
+      <li>PySide6 = Python on top of compiled C++</li>
+      <li>Desktop and Android
+        <ul>
+          <li>Compiled parts stay separate files, loaded when you import them</li>
+          <li>Both ship everything inside the app, nothing downloaded at runtime, but the pieces stay separate</li>
+        </ul>
+      </li>
+      <li>iOS
+        <ul>
+          <li>Merged into one program file when you build the app</li>
+          <li>Apple's rule: an app may only run code that was part of it when it was signed</li>
+          <li>No way to keep the pieces separate and load them later</li>
+        </ul>
+      </li>
+      <li>So: decided at build time, not at import time</li>
+      <li>Proper terms, if asked
+        <ul>
+          <li>Desktop and Android: dynamic linking (shared libraries, .so files)</li>
+          <li>iOS: static linking (archives merged into the executable)</li>
+          <li>Qt for iOS ships static libraries only</li>
+          <li>Qt for iOS with shared libraries is possible, but has its own problems and makes the steps more complex</li>
+        </ul>
+      </li>
+      <li>Nothing to load at import time, so every module has to be registered with the interpreter before it starts</li>
+    </ul>
   </aside>
 </section>
 
@@ -195,8 +284,17 @@
    </div>
   </div>
   <aside class="notes">
-    <p>There are four layers. First, Python for iOS, which is an xcframework distributed by python.org. Second, Qt for iOS, which is the normal Qt kit built for iOS. Third, PySide6 and Shiboken, cross-compiled for iOS as static archives. And on top of that is your application, which stays plain Python.</p>
-    <p>Nothing here is custom. These are the standard pieces, glued together by our tooling.</p>
+    <ul>
+      <li>Four layers
+        <ul>
+          <li>Python for iOS: xcframework distributed by python.org</li>
+          <li>Qt for iOS: the normal Qt kit built for iOS</li>
+          <li>PySide6 and Shiboken: cross-compiled for iOS as static archives</li>
+          <li>On top: your application, plain Python</li>
+        </ul>
+      </li>
+      <li>Nothing custom: standard pieces, glued together by our tooling</li>
+    </ul>
   </aside>
 </section>
 
@@ -221,9 +319,16 @@
   </div>
   <p class="x70">Same shape as <i class="qt-lemon">Android</i></p>
   <aside class="notes">
-    <p>If you are already familiar with the Android deployment, this will feel the same, and deploying the same app to an iOS device is just as easy.</p>
-    <p>There are two stages. The first is the heavy cross-compilation, which is separate from the everyday tool that turns your app into a project. One target here means one platform and architecture, so for example an arm64 device, an arm64 simulator, or an x86_64 simulator for Intel Macs.</p>
-    <p>You build the wheels once per Qt version and target, install them once, and use them across many projects.</p>
+    <ul>
+      <li>If you know the Android deployment, this feels the same; deploying to iOS is just as easy</li>
+      <li>Two stages
+        <ul>
+          <li>First: the heavy cross-compilation, separate from the everyday tool that turns your app into a project</li>
+          <li>One target = one platform and architecture: arm64 device, arm64 simulator, x86_64 simulator for Intel Macs</li>
+        </ul>
+      </li>
+      <li>Wheels: build once per Qt version and target, install once, use across many projects</li>
+    </ul>
   </aside>
 </section>
 
@@ -246,8 +351,20 @@
     <li class="fragment">The Qt for iOS kit is bundled inside the wheel</li>
   </ul>
   <aside class="notes">
-    <p>This is the slow part: it compiles Shiboken and PySide6 against the Qt for iOS kit. You need a Mac, and you need both Qt for iOS and the matching Qt for macOS installed, because the macOS build supplies the host tools used during cross-compilation. You choose the CPU architecture and whether the target is the simulator or a device.</p>
-    <p>The output is a normal wheel, but with an iOS platform tag, for example ios_arm64_simulator. The Qt kit is copied into the wheel, so the wheel is self-contained and your app does not need a separate Qt install.</p>
+    <ul>
+      <li>Slow part: compiles Shiboken and PySide6 against the Qt for iOS kit</li>
+      <li>Needs a Mac, plus Qt for iOS and the matching Qt for macOS
+        <ul>
+          <li>The macOS build supplies the host tools used during cross-compilation</li>
+        </ul>
+      </li>
+      <li>You choose the CPU architecture and simulator or device</li>
+      <li>Output: a normal wheel with an iOS platform tag, e.g. ios_arm64_simulator
+        <ul>
+          <li>Qt kit is copied into the wheel: self-contained, no separate Qt install needed</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -266,8 +383,17 @@
     <li class="fragment">Stage 1 is for whoever builds the wheels, or if you build from source</li>
   </ul>
   <aside class="notes">
-    <p>No. Most app developers only need stage 2. So you can completely forget about it :D Stage 1 is for the people who produce the wheels, so generally us, and anyone who wants to build from source.</p>
-    <p>Everyone else can get the wheels from the Qt Downloads page, or with qtpip, which is Qt's own pip tool: pip install qtpip, then qtpip download PySide6 with the iOS options.</p>
+    <ul>
+      <li>No</li>
+      <li>Most app developers only need stage 2: you can completely forget about it :D</li>
+      <li>Stage 1 is for people who produce the wheels (generally us) and anyone building from source</li>
+      <li>Everyone else: wheels from the Qt Downloads page, or with qtpip
+        <ul>
+          <li>qtpip = Qt's own pip tool</li>
+          <li>pip install qtpip, then qtpip download PySide6 with the iOS options</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -288,11 +414,27 @@
     <li class="fragment">Settings are kept in <code>pysidedeploy.spec</code></li>
   </ul>
   <aside class="notes">
-    <p>This is the tool you use day to day. You give it your main file and the two wheels, and it generates an Xcode project. It never compiles anything, so it takes seconds and you can run it every time you change your app's configuration. The output goes into a folder named after the target, so device and simulator projects do not overwrite each other.</p>
-    <p>What you need on your side: a Mac with a full Xcode installation, not just the Command Line Tools, because the generated project is built with the iOS SDK and the simulator runtimes that ship with Xcode. A device build also needs your Apple Developer Team ID, passed with --team-id. The simulator does not.</p>
-    <p>Python.xcframework is downloaded and cached automatically on the first run, or you can pass your own with --xcframework-path.</p>
-    <p>The tool never asks you which target you want. Because a wheel contains binaries for exactly one target, it reads the target from the wheel filename: simulator wheels produce a simulator project, device wheels produce a device project. So to switch from simulator to device, you pass the device wheels, and that is all. It also refuses to continue if the PySide6 and shiboken6 wheels target different platforms.</p>
-    <p>The result is an Xcode project, so to run the app on your device you sign and deploy it from Xcode.</p>
+    <ul>
+      <li>The day-to-day tool: main file + two wheels in, Xcode project out</li>
+      <li>Never compiles anything: takes seconds, rerun whenever your config changes</li>
+      <li>Output goes into a folder named after the target: device and simulator projects don't overwrite each other</li>
+      <li>What you need on your side
+        <ul>
+          <li>A Mac with full Xcode (not just the Command Line Tools): project is built with the iOS SDK and simulator runtimes</li>
+          <li>Device build: Apple Developer Team ID via --team-id; simulator: not needed</li>
+        </ul>
+      </li>
+      <li>Python.xcframework: downloaded and cached on first run, or pass your own with --xcframework-path</li>
+      <li>The tool never asks for the target
+        <ul>
+          <li>A wheel has binaries for exactly one target, so it reads the target from the wheel filename</li>
+          <li>Simulator wheels give a simulator project, device wheels a device project</li>
+          <li>Simulator to device: pass the device wheels, that is all</li>
+          <li>Refuses to continue if the PySide6 and shiboken6 wheels target different platforms</li>
+        </ul>
+      </li>
+      <li>Result is an Xcode project: sign and deploy it from Xcode</li>
+    </ul>
   </aside>
 </section>
 
@@ -315,12 +457,31 @@
   </ul>
   <p class="x60 fragment">Open it in Xcode, press <i class="qt-lemon">Run</i>.</p>
   <aside class="notes">
-    <p>The tool generates three files.</p>
-    <p>The first is main.mm, the small Objective-C++ entry point that initializes the embedded Python and hands control to your script. There is no QtWidgets .so file to import, so each module is registered as a built-in before the interpreter starts. After that, import PySide6.QtWidgets in your script resolves to something that is already inside the binary.</p>
-    <p>The tool registers every PySide6 module that is actually linked in, not just the ones your source imports directly. A module can pull in another one transitively, for example QtQml needs QtNetwork, and an unregistered module fails at runtime with "could not import module". Qt's own dependency graph is read from the .prl files in the kit rather than maintained by hand, and that is also how Qt plugins and QML plugins get found and registered with Q_IMPORT_PLUGIN.</p>
-    <p>The set of modules available to you follows the Qt for iOS kit that the wheel was built from. Add-ons like Qt PDF can be added to that kit. A module that is missing from the kit is currently dropped without a diagnostic, which I come back to on the limits slide.</p>
-    <p>The second is Info.plist, the app metadata: the app name, the bundle id and the version. You can set them with flags such as --name, --bundle-id and --app-version.</p>
-    <p>The third is project.pbxproj, the Xcode project itself. It lists the libraries to link and the resources to copy into the app.</p>
+    <ul>
+      <li>Three files generated</li>
+      <li>main.mm
+        <ul>
+          <li>Small Objective-C++ entry point: initializes the embedded Python, hands control to your script</li>
+          <li>No QtWidgets .so to import: each module registered as a built-in before the interpreter starts</li>
+          <li>After that, import PySide6.QtWidgets resolves to something already inside the binary</li>
+          <li>Registers every PySide6 module actually linked in, not just direct imports
+            <ul>
+              <li>A module can pull in another (QtQml needs QtNetwork)</li>
+              <li>Unregistered module fails at runtime: "could not import module"</li>
+            </ul>
+          </li>
+          <li>Qt's dependency graph is read from the .prl files in the kit, not by hand; same way Qt plugins and QML plugins are found and registered with Q_IMPORT_PLUGIN</li>
+          <li>Available modules follow the Qt for iOS kit the wheel was built from
+            <ul>
+              <li>Add-ons like Qt PDF can be added to that kit</li>
+              <li>Module missing from the kit: dropped without a diagnostic (see limits slide)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Info.plist: app metadata (name, bundle id, version); flags --name, --bundle-id, --app-version</li>
+      <li>project.pbxproj: the Xcode project itself; libraries to link, resources to copy into the app</li>
+    </ul>
   </aside>
 </section>
 
@@ -345,10 +506,25 @@
   </div>
   <p class="x70 fragment">Today the bundle carries <i class="python-yellow">your code</i>, PySide6 and Shiboken - nothing else.</p>
   <aside class="notes">
-    <p>You will probably ask: can I use my favourite package? There are two cases.</p>
-    <p>Pure-Python packages are just source files. If you copy the package folder next to your own code, it gets bundled and works. What is not supported yet is declaring it as a dependency, and anything in the package that is not a .py file, such as data files, is not copied.</p>
-    <p>Packages with compiled extensions, NumPy style, need a wheel built for iOS, and a desktop wheel will not work. Today the deploy tool copies PySide6 and shiboken6 into the bundle and your own .py files to the root, and nothing else, so a C-extension package does not work at all yet.</p>
-    <p>This is the same consequence of static linking as before. A C-extension package has exactly the problem PySide6 had, which is why it is the next big piece on the roadmap.</p>
+    <ul>
+      <li>Question: can I use my favourite package? Two cases</li>
+      <li>Pure Python: just source files
+        <ul>
+          <li>Copy the package folder next to your code: bundled and works</li>
+          <li>Not supported yet: declaring it as a dependency</li>
+          <li>Anything that is not a .py file (e.g. data files) is not copied</li>
+        </ul>
+      </li>
+      <li>Compiled extensions (NumPy style)
+        <ul>
+          <li>Need a wheel built for iOS; a desktop wheel will not work</li>
+          <li>Today the tool copies PySide6 and shiboken6 into the bundle and your .py files to the root, nothing else</li>
+          <li>A C-extension package does not work at all yet</li>
+        </ul>
+      </li>
+      <li>Same consequence of static linking: a C-extension package has exactly the problem PySide6 had</li>
+      <li>Why it is the next big piece on the roadmap</li>
+    </ul>
   </aside>
 </section>
 
@@ -365,9 +541,23 @@
     <div class="flow-step">Running game</div>
   </div>
   <aside class="notes">
-    <p>Now let me show you this live with Tetrix, a Widgets example from the PySide6 repository, so everyone can play it. The example is just a plain Python file, with no iOS-specific code in it.</p>
-    <p>I run pyside6-ios-deploy with the simulator wheels, and it finishes in seconds. Then I open the generated Xcode project, pick a simulator, and press Run. And here is the game. Let me play a few moves, rotate a piece and drop it.</p>
-    <p>One more thing: your Python files do not show up in Xcode's project navigator, but whatever your app prints appears in Xcode's console, so print debugging works as you would expect.</p>
+    <ul>
+      <li>Live with Tetrix: a Widgets example from the PySide6 repo, everyone can play</li>
+      <li>Plain Python file, no iOS-specific code in it</li>
+      <li>Steps
+        <ul>
+          <li>Run pyside6-ios-deploy with the simulator wheels: finishes in seconds</li>
+          <li>Open the generated Xcode project, pick a simulator, press Run</li>
+          <li>Play: a few moves, rotate a piece, drop it</li>
+        </ul>
+      </li>
+      <li>Debugging
+        <ul>
+          <li>Python files do not show up in Xcode's project navigator</li>
+          <li>Whatever the app prints appears in Xcode's console: print debugging works</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -389,8 +579,13 @@
    </div>
   </div>
   <aside class="notes">
-    <p>This is the same app with the same code, only with different wheels. The deploy tool takes the target from the wheels, so the device wheels produce a device project. The Team ID is used for code signing, and it is only needed for device builds. Xcode then signs the app and installs it on the phone, and this is the clip you saw at the beginning.</p>
-    <p>The signing itself is standard Apple tooling and not specific to PySide6, so I will not go into provisioning details here.</p>
+    <ul>
+      <li>Same app, same code, only different wheels</li>
+      <li>Tool takes the target from the wheels: device wheels give a device project</li>
+      <li>Team ID is used for code signing, only needed for device builds</li>
+      <li>Xcode signs the app and installs it on the phone: the clip from the beginning</li>
+      <li>Signing is standard Apple tooling, not specific to PySide6: no provisioning details</li>
+    </ul>
   </aside>
 </section>
 
@@ -420,8 +615,12 @@
     <li class="fragment"><i class="qt-lemon">App Store submission</i>: not verified yet, feedback welcome</li>
   </ul>
   <aside class="notes">
-    <p>What works today is the simulator and a physical device, with both Widgets and QML apps, and it is part of PySide 6.12, which ships with Qt 6.12.</p>
-    <p>I can say that it runs on a device. What I cannot say yet is how it goes through App Store review, because I have not submitted an app, so I will not claim you can ship it.</p>
+    <ul>
+      <li>Works today: simulator and physical device, Widgets and QML apps</li>
+      <li>Part of PySide 6.12, which ships with Qt 6.12</li>
+      <li>I can say: it runs on a device</li>
+      <li>Cannot say yet: App Store review (no app submitted), so I won't claim you can ship it</li>
+    </ul>
   </aside>
 </section>
 
@@ -439,10 +638,18 @@
     <li class="fragment">A Qt module missing from the kit is dropped <b>silently</b></li>
   </ul>
   <aside class="notes">
-    <p>First, you need the official Qt for iOS kit from the Qt installer. Custom Qt builds are not supported. That is a deliberate decision: it keeps the generated project simple and predictable. If you need it, tell us, but I cannot promise a date.</p>
-    <p>Second, packages with C extensions are not supported, as we saw earlier.</p>
-    <p>Third, wheels are built per target, so you have one for the simulator and one for the device. There is no universal binary.</p>
-    <p>And one more that is easy to trip over: if a Qt module is missing from the kit, it is currently dropped silently, with no error message. A real diagnostic for that is on the roadmap.</p>
+    <ul>
+      <li>First: official Qt for iOS kit from the Qt installer
+        <ul>
+          <li>Custom Qt builds are not supported</li>
+          <li>Deliberate decision: keeps the generated project simple and predictable</li>
+          <li>If you need it, tell us; I can't promise a date</li>
+        </ul>
+      </li>
+      <li>Second: packages with C extensions are not supported (seen earlier)</li>
+      <li>Third: wheels are built per target (one for simulator, one for device); no universal binary</li>
+      <li>Easy to trip over: a Qt module missing from the kit is dropped silently, no error message; a real diagnostic is on the roadmap</li>
+    </ul>
   </aside>
 </section>
 
@@ -455,7 +662,15 @@
     <li class="fragment">Everything is linked in at build time: your app can only use the modules built into it</li>
   </ul>
   <aside class="notes">
-    <p>Three things to remember. Your PySide6 app already runs on iOS, with the same Python, the same Qt and the same code as on desktop. The workflow is two stages: build the wheels once, then run pyside6-ios-deploy every time. And the main thing to remember: on iOS everything is linked into the app when you build it, so the modules your app can use are fixed at build time.</p>
+    <ul>
+      <li>Three things to remember
+        <ul>
+          <li>Your PySide6 app already runs on iOS: same Python, same Qt, same code as on desktop</li>
+          <li>Two stages: build the wheels once, run pyside6-ios-deploy every time</li>
+          <li>Main thing: on iOS everything is linked into the app at build time, so the modules your app can use are fixed at build time</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -469,8 +684,17 @@
     <li class="fragment">More examples</li>
   </ul>
   <aside class="notes">
-    <p>Qt 6.12 is out, and PySide 6.12 ships this support. What comes next is a real diagnostic for dropped modules, more tested examples, and third-party package support.</p>
-    <p>Third-party support is the natural next consequence of static linking. A C-extension package has exactly the same problem PySide6 had, so it needs the same treatment: an iOS-built static archive, linked in and registered before Python starts. That is why it is hard, and why it is the headline item.</p>
+    <ul>
+      <li>Qt 6.12 is out, PySide 6.12 ships this support</li>
+      <li>Next: a real diagnostic for dropped modules, more tested examples, third-party package support</li>
+      <li>Third-party support: natural consequence of static linking
+        <ul>
+          <li>A C-extension package has the same problem PySide6 had, so it needs the same treatment</li>
+          <li>An iOS-built static archive, linked in and registered before Python starts</li>
+          <li>Why it is hard, and why it is the headline item</li>
+        </ul>
+      </li>
+    </ul>
   </aside>
 </section>
 
@@ -484,7 +708,13 @@
     <li class="fragment">Talk repo: <i class="qt-neon">github.com/cinucen/PySide6-iOS-PyBerlin2026</i></li>
   </ul>
   <aside class="notes">
-    <p>Please try a small app and tell us what breaks. The docs are at &lt;link&gt;, bugs go to bugreports.qt.io under the PYSIDE project, and the source and examples are at code.qt.io. The slides are at &lt;repo link&gt;.</p>
+    <ul>
+      <li>Try a small app and tell us what breaks</li>
+      <li>Docs: &lt;link&gt;</li>
+      <li>Bugs: bugreports.qt.io, project PYSIDE</li>
+      <li>Source and examples: code.qt.io</li>
+      <li>Slides: &lt;repo link&gt;</li>
+    </ul>
   </aside>
 </section>
 
@@ -505,12 +735,14 @@
   </div>
   <img class="side-image w-40" src="img/PPT-section-images-05.jpg" />
   <aside class="notes">
-    <p>Thank you! Questions?</p>
-    <p>Can I use QML? &lt;your answer&gt;</p>
-    <p>Can I use package X? Pure Python, if you copy it next to your code. Not packages with C extensions yet.</p>
-    <p>App Store? I have not verified it, so I will not claim it.</p>
-    <p>Android parity? &lt;your answer&gt;</p>
-    <p>What about PyQt? &lt;your answer&gt;</p>
+    <ul>
+      <li>Thank you! Questions?</li>
+      <li>Can I use QML? &lt;your answer&gt;</li>
+      <li>Can I use package X? Pure Python if you copy it next to your code; C extensions not yet</li>
+      <li>App Store? Not verified, so not claiming it</li>
+      <li>Android parity? &lt;your answer&gt;</li>
+      <li>What about PyQt? &lt;your answer&gt;</li>
+    </ul>
   </aside>
 </section>
 
